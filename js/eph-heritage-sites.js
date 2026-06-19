@@ -465,10 +465,28 @@ let selectKombinasi = document.getElementById('filter-sort-kombinasi');
   let btnAll = document.getElementById('btn-all');
   let featButtons = document.querySelectorAll('.feat-btn:not(#btn-all)');
 
-  btnAll.addEventListener('click', function() {
+btnAll.addEventListener('click', function() {
+    // 1. Reset Tombol Fitur (Gambar & Artikel)
     activeFeatures.clear();
     btnAll.classList.add('active');
     featButtons.forEach(b => b.classList.remove('active'));
+
+    // 2. Reset Dropdown Wilayah
+    currentRegionFilter = 'all';
+    let selectRegion = document.getElementById('filter-region');
+    if (selectRegion) selectRegion.value = 'all';
+
+    // 3. Reset Dropdown Kombinasi (Usia & Klaster)
+    currentUsiaFilter = 'all';
+    let selectKombinasi = document.getElementById('filter-sort-kombinasi');
+    if (selectKombinasi) selectKombinasi.value = 'default';
+
+    // 4. Reset Kotak Pencarian Teks
+    currentSearchQuery = '';
+    let searchInput = document.getElementById('search-input');
+    if (searchInput) searchInput.value = '';
+
+    // 5. Terapkan ulang filter dengan kondisi bersih
     applyIntersectionFilter();
   });
 
